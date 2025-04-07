@@ -70,6 +70,8 @@ Connect with Manage Node-B via Password
 
 **C.**
 
+Manage Node via manually copying public key of Control Node
+
 ```
 # on the control node [Ubuntu], install ansible
 sudo apt update
