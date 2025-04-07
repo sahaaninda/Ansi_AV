@@ -6,6 +6,10 @@
 
 Two EC2 Instances have been setup on AWS
 
+**Ansible Terminology**:
+- Control Node
+- Manage Nodes
+
 **A.**
 
 Setup Passwordless Authentication using SSH Keys on Node-A
@@ -107,3 +111,43 @@ sudo apt install python3-six -y
 # shall be able to login without any password
 ssh ubuntu@34.235.115.x
 ```
+
+# Ansible Inventory
+
+
+- Make a _inventory.ini_ file in _/etc/ansible/hosts_
+  ```
+  cd /etc/ansible
+  mkdir hosts
+  cd hosts
+  touch inventory.ini
+
+  vim inventory.ini
+  # inside the .ini file > username@<manage-node-ip>
+  ubuntu@54.146.181.156
+  ubuntu@54.163.155.60
+
+  # from the hosts directory > execute Ansible adhoc command
+  # all manage-nodes
+  ansible -i inventory.ini -m ping all
+
+  # specific manage-nodes
+  ansible -i inventory.ini -m ping ubuntu@54.163.155.60
+
+  # categorizing servers in inventory.ini file
+  [appservers]
+  ubuntu@54.146.181.156
+  [dbservers]
+  ubuntu@54.163.155.60
+
+  ansible -i inventory.ini -m ping dbservers
+  ```
+
+# Ansible Instructions
+
+
+Two ways:
+- Adhoc commands > for simple and quick tasks
+- Playbooks [YAML] > for tasks which have complex and long steps. These are re-usable
+
+
