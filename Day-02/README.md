@@ -1,7 +1,7 @@
 # How to setup Passwordless Authentication
 
 **A**. Control Node > Manage Node via _SSH key_ <br/>
-**B**. Control Node > Manage Node via _Password_
+**B**. Control Node > Manage Node via _Password_ <br/>
 **C**. Control Node > Manage Node via manually copying _public key_
 
 Two EC2 Instances have been setup on AWS
