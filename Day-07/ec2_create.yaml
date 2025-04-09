@@ -15,6 +15,8 @@
         network_interfaces:
           - assign_public_ip: true
         image_id: "{{ item.image }}"
+        tags:
+         environment: "{{ item.name }}"
       loop:
         - { image: "ami-084568db4383264d4", name: "manage-node-1" } # Update AMI ID according 
         - { image: "ami-084568db4383264d4", name: "manage-node-2" } # to your account
