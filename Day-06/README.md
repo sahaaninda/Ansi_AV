@@ -10,6 +10,7 @@
   ec2_access_key: <access_key>
   ec2_secret_key: <secret_access_key>
   ```
+  
 - Create a yaml and role
   
   ```
@@ -27,26 +28,26 @@
   vim main.yml
 
   ---
-- name: start an instance with a public IP address
-  amazon.aws.ec2_instance:
-    name: "ansible-instance"
-    # key_name: "prod-ssh-key"
-    # vpc_subnet_id: subnet-013744e41e8088axx
-    instance_type: t2.micro
-    security_group: default
-    region: us-east-1
-    aws_access_key: "{{ ec2_access_key }}"  # From vault as defined
-    aws_secret_key: "{{ ec2_secret_key }}"  # From vault as defined      
-    network:
-      assign_public_ip: true
-    image_id: ami-04b70fa74e45c3917
-    tags:
-      Environment: Testing
+  - name: start an instance with a public IP address
+    amazon.aws.ec2_instance:
+      name: "ansible-instance"
+      # key_name: "prod-ssh-key"
+      # vpc_subnet_id: subnet-013744e41e8088axx
+      instance_type: t2.micro
+      security_group: default
+      region: us-east-1
+      aws_access_key: "{{ ec2_access_key }}"  # From vault as defined
+      aws_secret_key: "{{ ec2_secret_key }}"  # From vault as defined      
+      network:
+        assign_public_ip: true
+      image_id: ami-04b70fa74e45c3917
+      tags:
+        Environment: Testing
   
-  cd /etc/ansible/hosts
+    cd /etc/ansible/hosts
 
-  # execute the playbook
-  ansible-playbook -i inventory.ini ec2_create.yaml --vault-password-file vault.pass
+    # execute the playbook
+    ansible-playbook -i inventory.ini ec2_create.yaml --vault-password-file vault.pass
   ```
 
 
